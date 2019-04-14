@@ -1,4 +1,3 @@
-# from https://github.com/hill-a/stable-baselines
 import gym
 import gym_chrome_dino
 
