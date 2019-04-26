@@ -10,7 +10,7 @@ env = gym.make("ChromeDino-v0")
 # we demonstrate its usefulness in the next examples
 env = DummyVecEnv([lambda: env])  # The algorithms require a vectorized environment to run
 
-model = PPO2(MlpPolicy, env, verbose=1)
+model = PPO2(MlpPolicy, env, verbose=1, tensorboard_log="tensorboard/")
 # Train the agent
 model.learn(total_timesteps=10000)
 

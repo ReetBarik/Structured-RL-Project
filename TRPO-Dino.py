@@ -8,16 +8,12 @@ from stable_baselines import TRPO
 env = gym.make("ChromeDino-v0")
 env = DummyVecEnv([lambda: env])
 
-model = TRPO(MlpPolicy, env, verbose=1)
-model.learn(total_timesteps=25000)
-model.save("trpo_dino")
+model = TRPO(MlpPolicy, env, verbose=1, tensorboard_log="tensorboard/")
+model.learn(total_timesteps=10000)
 
-del model # remove to demonstrate saving and loading
-
-model = TRPO.load("trpo_dino")
-
+# Enjoy trained agent
 obs = env.reset()
-while True:
+for i in range(1000):
     action, _states = model.predict(obs)
     obs, rewards, dones, info = env.step(action)
     env.render()
